@@ -1,9 +1,9 @@
 /*!
  * ====================================================
- * Kity Minder Core - v1.4.50 - 2018-09-17
+ * Kity Minder Core - v1.4.50 - 2019-04-10
  * https://github.com/fex-team/kityminder-core
  * GitHub: https://github.com/fex-team/kityminder-core.git 
- * Copyright (c) 2018 Baidu FEX; Licensed BSD-3-Clause
+ * Copyright (c) 2019 Baidu FEX; Licensed BSD-3-Clause
  * ====================================================
  */
 
@@ -2233,14 +2233,15 @@ _p[21] = {
          * @param {String} text 文本数据
          */
             setText: function(text) {
-                return this.data.text = text;
+                console.log(text);
+                return this.data.name = text;
             },
             /**
          * 获取节点的文本数据
          * @return {String}
          */
             getText: function() {
-                return this.data.text || null;
+                return this.data.name || null;
             },
             /**
          * 先序遍历当前节点树

@@ -149,7 +149,8 @@ define(function(require, exports, module) {
          * @param {String} text 文本数据
          */
         setText: function(text) {
-            return this.data.text = text;
+            console.log(text)
+            return this.data.name = text;
         },
 
         /**
@@ -157,7 +158,7 @@ define(function(require, exports, module) {
          * @return {String}
          */
         getText: function() {
-            return this.data.text || null;
+            return this.data.name || null;
         },
 
         /**
