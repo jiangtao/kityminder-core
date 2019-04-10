@@ -149,7 +149,6 @@ define(function(require, exports, module) {
          * @param {String} text 文本数据
          */
         setText: function(text) {
-            console.log(text)
             return this.data.name = text;
         },
 
