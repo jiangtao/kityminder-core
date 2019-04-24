@@ -1,6 +1,6 @@
 /*!
  * ====================================================
- * Kity Minder Core - v1.4.50 - 2019-04-10
+ * Kity Minder Core - v1.4.50 - 2019-04-24
  * https://github.com/fex-team/kityminder-core
  * GitHub: https://github.com/fex-team/kityminder-core.git 
  * Copyright (c) 2019 Baidu FEX; Licensed BSD-3-Clause
@@ -7358,7 +7358,8 @@ _p[61] = {
                 function getDataOrStyle(name) {
                     return node.getData(name) || node.getStyle(name);
                 }
-                var nodeText = node.getText();
+                var nodeText = node.getText().toString();
+                // fix number split error
                 var textArr = nodeText ? nodeText.split("\n") : [ " " ];
                 var lineHeight = node.getStyle("line-height");
                 var fontSize = getDataOrStyle("font-size");
