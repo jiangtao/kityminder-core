@@ -139,7 +139,7 @@ define(function(require, exports, module) {
                 return node.getData(name) || node.getStyle(name);
             }
 
-            var nodeText = node.getText();
+            var nodeText = node.getText().toString(); // fix number split error
             var textArr = nodeText ? nodeText.split('\n') : [' '];
 
             var lineHeight = node.getStyle('line-height');
