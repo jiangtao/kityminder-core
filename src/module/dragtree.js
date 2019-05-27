@@ -1,6 +1,7 @@
 define(function(require, exports, module) {
     var kity = require('../core/kity');
     var utils = require('../core/utils');
+    var MinderEvent = require('../core/event')
     var MinderNode = require('../core/node');
     var Command = require('../core/command');
     var Module = require('../core/module');
@@ -138,8 +139,13 @@ define(function(require, exports, module) {
                 });
 
                 this._minder.layout(-1);
-
+                this._minder._fire(new MinderEvent('dragnode', {
+                    sources: this._dragSources, 
+                    target: this._dropSucceedTarget, 
+                    dragtype: 'parent'
+                }))
                 this._minder.execCommand('movetoparent', this._dragSources, this._dropSucceedTarget);
+
 
             } else if (this._orderSucceedHint) {
 

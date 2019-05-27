@@ -61,6 +61,78 @@ define(function(require, exports, module) {
         };
     }
 
+    function generateExtra(h, compat) {
+      return {
+        'app': {
+          'background': '#ff0000',
+          'root-color': 'white',
+          'root-background': hsl(h, 37, 60),
+          'main-color': 'black',
+          'main-background': hsl(h, 33, 95),
+          'main-stroke': hsl(h, 37, 60),
+          'sub-color': 'black',
+          'sub-background': 'transparent',
+          'sub-stroke': 'none',
+          'connect-color': hsl(h, 37, 60),
+          'selected-stroke': hsl(h, 26, 30),
+          'blur-selected-stroke': hsl(h, 10, 60),
+          'marquee-background': hsl(h, 100, 80).set('a', 0.1),
+          'marquee-stroke': hsl(h, 37, 60),
+          'text-selection-color': hsl(h, 100, 20)
+        },
+        'page': {
+          'background': '#fbfbfb',
+          'root-color': 'white',
+          'root-background': hsl(h, 37, 60),
+          'main-color': 'black',
+          'main-background': hsl(h, 33, 95),
+          'main-stroke': hsl(h, 37, 60),
+          'sub-color': 'black',
+          'sub-background': 'transparent',
+          'sub-stroke': 'none',
+          'connect-color': hsl(h, 37, 60),
+          'selected-stroke': hsl(h, 26, 30),
+          'blur-selected-stroke': hsl(h, 10, 60),
+          'marquee-background': hsl(h, 100, 80).set('a', 0.1),
+          'marquee-stroke': hsl(h, 37, 60),
+          'text-selection-color': hsl(h, 100, 20)
+        },
+        'project': {
+          'background': '#fbfbfb',
+          'root-color': 'white',
+          'root-background': hsl(h, 37, 60),
+          'main-color': 'black',
+          'main-background': hsl(h, 33, 95),
+          'main-stroke': hsl(h, 37, 60),
+          'sub-color': 'black',
+          'sub-background': 'transparent',
+          'sub-stroke': 'none',
+          'connect-color': hsl(h, 37, 60),
+          'selected-stroke': hsl(h, 26, 30),
+          'blur-selected-stroke': hsl(h, 10, 60),
+          'marquee-background': hsl(h, 100, 80).set('a', 0.1),
+          'marquee-stroke': hsl(h, 37, 60),
+          'text-selection-color': hsl(h, 100, 20)
+        },
+        'dir': {
+          'background': '#fbfbfb',
+          'root-color': 'white',
+          'root-background': hsl(h, 37, 60),
+          'main-color': 'black',
+          'main-background': hsl(h, 33, 95),
+          'main-stroke': hsl(h, 37, 60),
+          'sub-color': 'black',
+          'sub-background': 'transparent',
+          'sub-stroke': 'none',
+          'connect-color': hsl(h, 37, 60),
+          'selected-stroke': hsl(h, 26, 30),
+          'blur-selected-stroke': hsl(h, 10, 60),
+          'marquee-background': hsl(h, 100, 80).set('a', 0.1),
+          'marquee-stroke': hsl(h, 37, 60),
+          'text-selection-color': hsl(h, 100, 20)
+        }
+      }
+    }
     var plans = {
         red: 0,
         soil: 25,
@@ -71,8 +143,8 @@ define(function(require, exports, module) {
     };
     var name;
     for (name in plans) {
-        theme.register('fresh-' + name, generate(plans[name]));
-        theme.register('fresh-' + name + '-compat', generate(plans[name], true));
+        theme.register('fresh-' + name, generate(plans[name]), generateExtra(plans[name]));
+        theme.register('fresh-' + name + '-compat', generate(plans[name], true), generateExtra(plans[name], true));
     }
 
 });

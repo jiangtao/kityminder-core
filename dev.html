@@ -33,18 +33,19 @@
             "data": {
                 "text": "百度产品",
                 "image": "https://www.baidu.com/img/bd_logo1.png?where=super",
-                "imageSize": { "width": 270, "height": 129 }
+                "imageSize": { "width": 270, "height": 129 },
+                "hexType": "project"
             },
             "children": [
-                { "data": { "name": "新闻" } },
-                { "data": { "name": "网页", "priority": 1 } },
-                { "data": { "name": "贴吧", "priority": 2 } },
-                { "data": { "name": "知道", "priority": 2 } },
-                { "data": { "name": "音乐", "priority": 3 } },
-                { "data": { "name": "图片", "priority": 3 } },
-                { "data": { "name": "视频", "priority": 3 } },
-                { "data": { "name": "地图", "priority": 3 } },
-                { "data": { "name": "百科", "priority": 3 } },
+                { "data": { "name": "新闻", "hexType": "page" } },
+                { "data": { "name": "网页", "priority": 1, "hexType": "app" } },
+                { "data": { "name": "贴吧", "priority": 2, "hexType": "page" } },
+                { "data": { "name": "知道", "priority": 2, "hexType": "project" } },
+                { "data": { "name": "音乐", "priority": 3, "hexType": "page" } },
+                { "data": { "name": "图片", "priority": 3, "hexType": "dir" } },
+                { "data": { "name": "视频", "priority": 3, "hexType": "page" } },
+                { "data": { "name": "地图", "priority": 3, "hexType": "page" } },
+                { "data": { "name": "百科", "priority": 3, "hexType": "dir" } },
                 { "data": { "name": "更多", "hyperlink": "http://www.baidu.com/more" } }
             ]
         }
@@ -65,6 +66,10 @@
         // 创建 km 实例
         var km = window.km = new Minder();
         km.setup('#minder-view');
+        km.enable()
+        km.on('dragnode', function(e) {
+            console.log(e)
+        })
     });
     seajs.use('start');
 </script>

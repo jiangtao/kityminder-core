@@ -15,6 +15,7 @@ define(function(require, exports, module) {
 
     // 核心导出，大写的部分导出类，小写的部分简单 require 一下
     // 这里顺序是有讲究的，调整前先弄清楚依赖关系。
+    console.log('v1')
     require('./core/utils');
     kityminder.Minder = require('./core/minder');
     kityminder.Command = require('./core/command');
@@ -36,7 +37,9 @@ define(function(require, exports, module) {
     kityminder.Render = require('./core/render');
     kityminder.Connect = require('./core/connect');
     kityminder.Layout = require('./core/layout');
+
     kityminder.Theme = require('./core/theme');
+
     kityminder.Template = require('./core/template');
     kityminder.Promise = require('./core/promise');
     require('./core/_boxv');
@@ -66,7 +69,7 @@ define(function(require, exports, module) {
     require('./module/view');
     require('./module/zoom');
 
-    require('./protocol/json');
+  require('./protocol/json');
     require('./protocol/text');
     require('./protocol/markdown');
     require('./protocol/svg');

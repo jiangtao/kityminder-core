@@ -38,11 +38,10 @@ define(function(require, exports, module) {
      *         'root-padding': [10, 20]
      *     });
      */
-    function register(name, theme) {
-        _themes[name] = theme;
+    function register(name, theme, extra) {
+        _themes[name] = Object.assign(theme, extra);
     }
     exports.register = register;
-
     utils.extend(Minder, {
         getThemeList: function() {
             return _themes;
@@ -90,8 +89,16 @@ define(function(require, exports, module) {
         },
 
         getThemeItems: function(node) {
+            if(!this._a) {
+              console.log(node.data)
+            }
+            this._a = true
             var theme = this.getTheme(node);
-            return _themes[this.getTheme(node)];
+            var themeStyle = _themes[theme]
+            if(node && node.data && node.data.hexType && themeStyle[node.data.hexType]) {
+              return Object.assign(themeStyle, themeStyle[node.data.hexType])
+            }
+            return _themes[theme];
         },
 
         /**

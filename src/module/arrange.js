@@ -1,6 +1,7 @@
 
 define(function(require, exports, module) {
     var kity = require('../core/kity');
+    var MinderEvent = require('../core/event')
     var MinderNode = require('../core/node');
     var Command = require('../core/command');
     var Module = require('../core/module');
@@ -122,7 +123,20 @@ define(function(require, exports, module) {
                 return asc ? (b.index - a.index) : (a.index - b.index);
             });
 
+            var fired = function(km, node, index) {
+                var parent = node.parent;
+                if (!parent) return;
+                var sibling = parent.children;
+                if (index < 0 || index >= sibling.length) return;
+                km._fire(new MinderEvent('dragnode', {
+                    sources: [node], 
+                    target: sibling[index], 
+                    dragtype: 'sibling'
+                }))
+            }
+
             indexed.forEach(function(one) {
+                fired(km, one.node, index)
                 one.node.arrange(index);
             });
 
