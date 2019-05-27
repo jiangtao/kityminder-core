@@ -122,6 +122,15 @@ define(function(require, exports, module) {
             }
         },
 
+        _canDrop() {
+            if(this._dropSucceedTarget) {
+                const type = this._dropSucceedTarget.getData('hexType');
+                if(!type) return true
+                return !(type === 'app' || type === 'project')
+            }
+            return true
+        },
+
         dragEnd: function() {
             this._startPosition = null;
             this._dragPosition = null;
@@ -133,18 +142,18 @@ define(function(require, exports, module) {
             this._fadeDragSources(1);
 
             if (this._dropSucceedTarget) {
-
                 this._dragSources.forEach(function(source) {
                     source.setLayoutOffset(null);
                 });
-
-                this._minder.layout(-1);
-                this._minder._fire(new MinderEvent('dragnode', {
-                    sources: this._dragSources, 
-                    target: this._dropSucceedTarget, 
-                    dragtype: 'parent'
-                }))
-                this._minder.execCommand('movetoparent', this._dragSources, this._dropSucceedTarget);
+                if(this._canDrop()) {
+                    this._minder.layout(-1);
+                    this._minder._fire(new MinderEvent('dragnode', {
+                        sources: this._dragSources, 
+                        target: this._dropSucceedTarget, 
+                        dragtype: 'parent'
+                    }))
+                    this._minder.execCommand('movetoparent', this._dragSources, this._dropSucceedTarget);
+                }
 
 
             } else if (this._orderSucceedHint) {
@@ -165,7 +174,6 @@ define(function(require, exports, module) {
                 if (index > maxIndex && hint.type == 'up') index--;
 
                 hint.node.setLayoutOffset(null);
-
                 this._minder.execCommand('arrange', index);
                 this._renderOrderHint(null);
             } else {

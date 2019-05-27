@@ -16,6 +16,19 @@ define(function(require, exports, module) {
             sibling.splice(this.getIndex(), 1);
             sibling.splice(index, 0, this);
             return this;
+        },
+        _fired: function(km, index) {
+            var node = this;
+            var parent = node.parent;
+            if (!parent) return;
+            var sibling = parent.children;
+            if (index < 0 || index >= sibling.length) return;
+            if(sibling[index] === this) return
+            km._fire(new MinderEvent('dragnode', {
+                sources: [sibling[index]], 
+                target: node, 
+                dragtype: 'sibling'
+            }))
         }
     });
 
@@ -123,20 +136,8 @@ define(function(require, exports, module) {
                 return asc ? (b.index - a.index) : (a.index - b.index);
             });
 
-            var fired = function(km, node, index) {
-                var parent = node.parent;
-                if (!parent) return;
-                var sibling = parent.children;
-                if (index < 0 || index >= sibling.length) return;
-                km._fire(new MinderEvent('dragnode', {
-                    sources: [node], 
-                    target: sibling[index], 
-                    dragtype: 'sibling'
-                }))
-            }
-
             indexed.forEach(function(one) {
-                fired(km, one.node, index)
+                one.node._fired(km, index)
                 one.node.arrange(index);
             });
 
