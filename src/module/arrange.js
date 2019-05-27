@@ -164,8 +164,8 @@ define(function(require, exports, module) {
             divider: true
         }],
         commandShortcutKeys: {
-            'arrangeup': 'normal::alt+Up',
-            'arrangedown': 'normal::alt+Down'
+            // 'arrangeup': 'normal::alt+Up',
+            // 'arrangedown': 'normal::alt+Down'
         }
     });
 });

@@ -392,8 +392,14 @@ define(function(require, exports, module) {
             events: {
                 'normal.mousedown inputready.mousedown': function(e) {
                     // 单选中根节点也不触发拖拽
+                    var _canDrag = function(node) {
+                        var type = node.getData('hexType')
+                        if(!type) return true
+                        return !(type === 'app' || type === 'project')
+                    }
                     if (e.originEvent.button) return;
-                    if (e.getTargetNode() && e.getTargetNode() != this.getRoot()) {
+                    var node = e.getTargetNode();
+                    if (node && node != this.getRoot() && _canDrag(node)) {
                         dragger.dragStart(e.getPosition());
                     }
                 },
