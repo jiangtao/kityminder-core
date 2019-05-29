@@ -121,16 +121,15 @@ define(function(require, exports, module) {
                 this._renderOrderHint(this._orderSucceedHint = null);
             }
         },
-
-        _canDrop() {
+        _canDrop: function() {
             if(this._dropSucceedTarget) {
-                const type = this._dropSucceedTarget.getData('hexType');
-                if(!type) return true
-                return !(type === 'app' || type === 'project')
+                var type = this._dropSucceedTarget.getData('hexType');
+                if(!type) return true;
+                return !(type === 'app' || type === 'project');
             }
-            return true
+            return true;
         },
-
+        
         dragEnd: function() {
             this._startPosition = null;
             this._dragPosition = null;
@@ -151,11 +150,9 @@ define(function(require, exports, module) {
                         sources: this._dragSources, 
                         target: this._dropSucceedTarget, 
                         dragtype: 'parent'
-                    }))
-                    this._minder.execCommand('movetoparent', this._dragSources, this._dropSucceedTarget);
+                    }));
+                    this._minder.execCommand('movetoparent',this._dragSources, this._dropSucceedTarget);
                 }
-
-
             } else if (this._orderSucceedHint) {
 
                 var hint = this._orderSucceedHint;

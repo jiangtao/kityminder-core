@@ -28,7 +28,7 @@ define(function(require, exports, module) {
                 sources: [sibling[index]], 
                 target: node, 
                 dragtype: 'sibling'
-            }))
+            }));
         }
     });
 
